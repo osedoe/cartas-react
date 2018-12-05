@@ -1,28 +1,35 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Header from './components/Header';
+import Form from './components/pages/Form';
+import Game from './components/pages/Game';
 import './App.css';
 
-class App extends Component {
+export default class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      gameLevel: '0'
+    }
+
+    this.setLevel = this.setLevel.bind(this);
+  }
+
+  setLevel(level) {
+    console.log("hola");
+    this.setState({
+      gameLevel: level
+    });
+  }
+
   render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
+    return <Router>
+        <div className="app">
+          <Header />
+          <Route exact path="/" component={Form} gameLevel={this.state.gameLevel}/>
+          <Route path="/form" component={Form} gameLevel={this.state.gameLevel} />
+          <Route path="/game" component={Game} />
+        </div>
+    </Router>
   }
 }
-
-export default App;
