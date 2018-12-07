@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import './Form.css';
-import Board from "../Board";
+import Board from "./Board";
 
 export default class Form extends Component {
   constructor(props) {
@@ -13,6 +12,7 @@ export default class Form extends Component {
     };
 
     this.onSetLevel = this.onSetLevel.bind(this);
+    this.resetGame = this.resetGame.bind(this);
     this.startGame = this.startGame.bind(this);
   }
 
@@ -20,6 +20,12 @@ export default class Form extends Component {
     switch (event.target.name) {
       case 'Fácil':
         this.setState({ level: 0, startLevel: false });
+        break;
+      case 'Medio':
+        this.setState({ level: 1, startLevel: false });
+        break;
+      case 'Difícil':
+        this.setState({ level: 2, startLevel: false });
         break;
       default:
         this.setState({ level: 1, startLevel: false });
@@ -31,6 +37,11 @@ export default class Form extends Component {
     this.props.setLevel(this.state.gameLevel);
   }
 
+  resetGame() {
+    window.location.reload();
+
+}
+
   startGame() {
     this.setState({ startLevel: true });
   }
@@ -40,20 +51,19 @@ export default class Form extends Component {
     return <div>
       <p>Elige un nivel de dificultad:</p>
       <label>
-        <input type="radio" name="Fácil" value="1" checked={level === 0} disabled={startLevel} onChange={this.changeLevel}/>
+        <input type="radio" name="Fácil" checked={level === 0} disabled={startLevel} onChange={this.changeLevel}/>
         {this.state.levelNames[0]}
       </label>
       <label>
-        <input type="radio" name="Medio" value="2" checked={level === 1} disabled={startLevel} onChange={this.changeLevel}/>
+        <input type="radio" name="Medio" checked={level === 1} disabled={startLevel} onChange={this.changeLevel}/>
         {this.state.levelNames[1]}
       </label>
-      {/*<label>*/}
-      {/*<input type="radio" name="level" value="3"*/}
-      {/*onClick={this.props.gameLevel}*/}
-      {/*/>*/}
-      {/*{this.state.levelNames[2]}*/}
-      {/*</label>*/}
+      <label>
+        <input type="radio" name="Difícil" checked={level === 2} disabled={startLevel} onChange={this.changeLevel}/>
+        {this.state.levelNames[2]}
+      </label>
       <div>
+        <button onClick={this.resetGame}>Reiniciar</button>
         <button onClick={this.startGame}>Empezar a jugar</button>
         {startLevel && <Board level={level}/>}
       </div>

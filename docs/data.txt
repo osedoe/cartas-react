@@ -1,0 +1,79 @@
+Proyecto 5.1: Descubre las parejas
+En esta actividad vamos a escribir una aplicación web con JS en la que el usuario encuentre parejas de imágenes.
+
+El juego consiste en mostrar una serie de imágenes en un tablero, todas boca abajo, como si fueran cartas. El usuario podrá darle la vuelta a dos cartas a la vez. Si son iguales se quedan boca arriba y el usuario suma diez puntos. Si no son iguales se dan la vuelta pasado un segundo y el usuario pierde un punto.
+
+El juego acaba cuando el usuario consigue descubrir todas las parejas.
+
+Las imágenes necesarias para realizar la actividad las puedes descargar de este enlace (poner un ZIP).
+
+Secuencia de la aplicación
+Se carga la página sin imágenes.
+La página pide al usuario, mediante un formulario, un nivel de dificultad entre los siguientes: fácil (4x4, 8 imágenes), medio (6x6, 18 imágenes) o difícil (8x8, 32 imágenes).
+La página generará un grid con el número de filas y columnas seleccionadas por el usuario.
+En cada celda se introducirá una imagen boca abajo (se proporciona una imagen específica para ello). Cada imagen será escogida al azar del banco de imágenes. En total seleccionaremos el número de imágenes para el tamaño indicado, y cada imagen se repetirá exactamente una vez. El posicionamiento de las imágenes en el grid será igualmente aleatorio.
+Cuando el ratón pase por encima de una imagen, se le dibujará un borde que desaparecerá cuando ratón salga de dicha imagen.
+Si el usuario pulsa una imagen, ésta se da la vuelta y aumentará su tamaño en cierta cantidad, así lograremos que destaque, separe las imágenes considerando este tamaño, imagine qué ocurre cuando se da la vuelta a imágenes vecinas.
+Si el usuario pulsa una segunda imagen, ésta también se da la vuelta y...
+Si es igual a la anterior, ambas imágenes permanecen entonces boca arriba y se suman 10 puntos.
+Si no es igual a la anterior, ambas imágenes permanecen boca arriba durante un segundo, se vuelven a dar la vuelta y se resta 1 punto
+A lo largo de toda la ejecución se verá también un cronómetro que indicará los minutos y segundos que han transcurrido.
+El juego termina cuando el usuario ha descubierto todas las parejas, momento en el que se anuncia la puntuación y se permite al jugador iniciar un nuevo juego. También podrá introducir su nombre, en cuyo caso se guardará en WebStorage:
+El nombre.
+La fecha.
+La puntuación.
+El tiempo transcurrido.
+La puntuación estará visible en todo momento. También se deberá visualizar la máxima puntuación conseguida en todas las partidas jugadas, así como el número de partidas.
+ Habrá disponible una opción para ver las máximas puntuaciones. Esto nos mostrará las puntuaciones de mayor a menor. A igualdad de puntuación se mostrará primero la partida con menor duración y en caso de empate, la más antigua.
+Indicaciones de entrega
+La entrega se realizará en dos pasos:
+
+Una entrega presencial, en la que mostrarás al profesorado la funcionalidad de la aplicación. En dicha entrega el profesorado puede solicitar algún tipo de modificación del código o del funcionamiento del mismo a fin de comprobar los conocimientos y/o la autoría del mismo.
+Una entrega online, en la que subirás el código generado, incluyendo:
+Las imágenes utilizadas.
+Los archivos utilizados, incluyendo, en su caso, los que definan los estilos de la página.
+La documentación indicada.
+ 
+
+Evaluación del proyecto
+El proyecto será interdisciplinar y afectará a los módulos Desarrollo de Aplicaciones en Clientes Web y Desarrollo de Interfaces Web, la forma de evaluar y los aspectos a evaluar dependerán en sí de cada uno de los mismos:
+
+Módulo de Desarrollo de Interfaces Web
+Este proyecto se considerará como una Actividad Evaluable.
+
+Instrucciones:
+
+La corrección de los apartados se realizará en términos de (funciona/no funciona) y después se entrará a valorar aspectos del código. Se penalizará la puntuación si se detectan elementos innecesarios o que no está relacionados con lo que se pide en el apartado (los efectos del copia/pega).
+Optimice las reglas utilizando los selectores adecuados, se penalizará redundancias innecesarias.
+En los apartados se le puede indicar que utilice o no determinados elementos, si no lo realiza como se solicita se penalizará.
+Las penalizaciones dependerán de la importancia o gravedad en cuestión y serán justificadas.
+Para comprobar la autoría se pueden solicitar cambios o explicaciones del código o reglas, se puede dar el ejercicio como NO SUPERADO si no queda claro la autoría o dominio sobre el proyecto.
+Utilice sólo CSS y JavaScript definido por el usuario, salvo que el apartado así lo indique (por ejemplo, apartado 3)
+  
+
+(2 pto) Diseño Resposive: La distribución y los elementos que se muestran variarán según el tipo de pantallas. Se considerarán las pantallas horizontales y verticales. Con respecto a las horizontales tendremos en cuenta:
+Pantallas pequeñas: 1024 píxeles de ancho
+Pantallas medianas: 1280 píxeles de ancho
+Pantallas grandes: ancho superior a 1400 píxeles
+Por debajo de las pantallas pequeñas podemos considerarlas como si de pantallas verticales se trataran.
+(2 ptos) Mapa de navegación y prototipos (wireframes): Se realizará una documentación con el mapa de navegación. Para los prototipos utilizaremos la aplicación gratuita y multiplataforma Pencil: https://pencil.evolus.vn/ 
+(1 pto) Utiliza un Tour Webside Guide, básicamente consiste en añadir a nuestra web un minitutorial de cómo se utiliza la aplicación. Existen varias herramientas, puedes utilizar cualquiera siempre y cuando NO utilice jQuery (sólo JavaScript y CSS). Aquí tienes algunas interesantes https://bit.ly/2DJn41x 
+NOTA: en esta página hay algunas herramientas que utilizan jQuery como son Enjoyhint o Bootstrap Tour, éstas no se pueden utilizar, revisa primero la documentación para saber si utilizan o no jQuery
+(2.5 ptos) Efectos y animaciones: Te puede ayudar con el siguiente curso https://bit.ly/2s7NX82
+(0.25 pto) Borde sobre la ficha cuando está sin girar.
+(0.25 pto) Utilice un favicon que sea animado.
+(2 ptos) Define una animación para girar las imágenes y aumentarlas o disminuirlas según se muestre o se oculte la imagen. Puedes utilizar transformaciones, transiciones y/o escalado.
+(2.5 ptos) Ventana Modal: Defina una ventana modal para mostrar el ranking de partidas.
+OPCIONAL (Hasta 4 ptos) Otras animaciones: puede definir otras animaciones, por ejemplo barajar las imágenes (puedes obtener ideas de https://tympanus.net/Development/Baraja/ ), colocar las imágenes en el tablero (grid) desde el mazo, o bien cuando se encuentren las parejas vuelvan a un mazo con las parejas encontradas (otros ejemplos https://tympanus.net/Development/CardStackEffects/ ). 
+Módulo de Desarrollo Web en Entorno Cliente
+ Evaluación:
+
+Por los requisitos técnicos planteados, 70%. Se valorará:
+La correcta implementación de la funcionalidad.
+El diseño optimizado del código para su reutilización.
+Por seguir buenas pautas de programación, 20%. Se valorará:
+La correcta indentación del código.
+El uso de comentarios adecuados.
+La separación del proyecto en ficheros.
+El uso de nombres significativos y autoexplicativos.
+Por aportaciones adicionales, 10%. Pueden hacerse aportaciones basadas en contenidos vistos con anterioridad o en contenidos que veremos más adelante.
