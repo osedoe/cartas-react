@@ -48,27 +48,29 @@ export default class Form extends Component {
 
   render() {
     const { startLevel, level } = this.state;
-    return <div>
-      <p>Elige un nivel de dificultad:</p>
-      <div className='inputContainer'>
-        <label>
-          <input type="radio" name="Fácil" checked={level === 0} disabled={startLevel} onChange={this.changeLevel}/>
-          {this.state.levelNames[0]}
-        </label>
-        <label>
-          <input type="radio" name="Medio" checked={level === 1} disabled={startLevel} onChange={this.changeLevel}/>
-          {this.state.levelNames[1]}
-        </label>
-        <label>
-          <input type="radio" name="Difícil" checked={level === 2} disabled={startLevel} onChange={this.changeLevel}/>
-          {this.state.levelNames[2]}
-        </label>
+    return <div className='outterContainer'>
+      <div className='formContainer'>
+        <p>Elige un nivel de dificultad:</p>
+        <div className='inputContainer'>
+          <label>
+            <input type="radio" name="Fácil" checked={level === 0} disabled={startLevel} onChange={this.changeLevel}/>
+            {this.state.levelNames[0]}
+          </label>
+          <label>
+            <input type="radio" name="Medio" checked={level === 1} disabled={startLevel} onChange={this.changeLevel}/>
+            {this.state.levelNames[1]}
+          </label>
+          <label>
+            <input type="radio" name="Difícil" checked={level === 2} disabled={startLevel} onChange={this.changeLevel}/>
+            {this.state.levelNames[2]}
+          </label>
+        </div>
+        <div className='btnContainer'>
+          <button onClick={this.resetGame}>Reiniciar</button>
+          <button onClick={this.startGame}>Empezar a jugar</button>
+        </div>
       </div>
-      <div className='btnContainer'>
-        <button onClick={this.resetGame}>Reiniciar</button>
-        <button onClick={this.startGame}>Empezar a jugar</button>
-        {startLevel && <Board level={level}/>}
-      </div>
+      {startLevel && <Board level={level}/>}
     </div>
   }
 }
