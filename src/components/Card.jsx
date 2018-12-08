@@ -4,24 +4,40 @@ export default class Card extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      cardId: this.props.cardId,
       sideB: require('./../img/reverso.png'),
       sideA: this.props.frontImg,
-      showing: false
+      imageUp: false,
+      matched: false
     }
+    this.handleClick = this.handleClick.bind(this);
+    this.onSelect = this.onSelect.bind(this);
     this.flipCard = this.flipCard.bind(this);
   }
 
-  flipCard() {
+  handleClick() {
+    this.flipCard();
+    this.onSelect();
+  }
+
+  onSelect() {
+    const { cardId, frontImg } = this.props;
+    this.props.selectCard(cardId, frontImg);
+  }
+
+  flipCard(event) {
+    // Swap images
     this.setState({
       sideA: this.state.sideB,
       sideB: this.props.frontImg,
+      imageUp: true
     });
   }
 
   render() {
     return <div className='cardContainer'>
       <img className='reverse'
-        onClick={this.flipCard}
+        onClick={this.handleClick}
         src={this.state.sideB}
         alt={this.state.sideA}
       />

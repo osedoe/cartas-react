@@ -11,18 +11,26 @@ export default class Board extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      pair: []
+      firstMatch: '',
+      secondMatch: '',
+      isComparing: false,
+      attemps: 0,
     }
     // We need to bind this to the component due scoping rules
-    this.onCheckPair = this.onCheckPair.bind(this);
+    this.selectingCard = this.selectingCard.bind(this);
     this.generateGrid = this.generateGrid.bind(this);
     this.generateCards = this.generateCards.bind(this);
   }
 
-  onCheckPair(imageToCheck) {
-    this.setState({
-      pair: [].push(imageToCheck)
-    });
+  selectingCard(cardId, frontImg) {
+    const { firstMatch, secondMatch } = this.state;
+    if (firstMatch === '') {
+      this.setState({ firstMatch: frontImg });
+    }
+    if (firstMatch !== '' && secondMatch === '') {
+      this.setState({ secondMatch: frontImg });
+    }
+    // Implement comparison
   }
 
   generateGrid(columns, rows) {
@@ -40,8 +48,20 @@ export default class Board extends React.Component {
     for (let i = 1; i <= number; i=i+2) {
       const randomImgIndex = getNumber(0, images.length);
       const imgPath = `/${images[randomImgIndex]}`;
-      grid.push(<Card key={i} frontImg={imgPath} onCheck={this.onCheckPair}/>);
-      grid.push(<Card key={i+1} frontImg={imgPath} onCheck={this.onCheckPair}/>);
+      // Create two cards at a time
+      grid.push(<Card
+        selectCard={this.selectingCard}
+        key={i}
+        cardId={i}
+        frontImg={imgPath}
+      />);
+
+      grid.push(<Card
+        selectCard={this.selectingCard}
+        key={i + 1}
+        cardId={i + 1}
+        frontImg={imgPath}
+      />);
     }
     return shuffleArr(grid);
   }
