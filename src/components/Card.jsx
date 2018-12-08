@@ -11,17 +11,11 @@ export default class Card extends React.Component {
     this.flipCard = this.flipCard.bind(this);
   }
 
-  checkPair() {
-    this.setState({
-      showing: true
-    })
-  }
-
   flipCard() {
     this.setState({
       sideA: this.state.sideB,
       sideB: this.props.frontImg,
-    })
+    });
   }
 
   render() {

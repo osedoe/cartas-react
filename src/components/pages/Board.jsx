@@ -11,14 +11,22 @@ export default class Board extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      cards: 0,
+      pair: []
     }
     // We need to bind this to the component due scoping rules
+    this.onCheckPair = this.onCheckPair.bind(this);
     this.generateGrid = this.generateGrid.bind(this);
     this.generateCards = this.generateCards.bind(this);
   }
 
+  onCheckPair(imageToCheck) {
+    this.setState({
+      pair: [].push(imageToCheck)
+    });
+  }
+
   generateGrid(columns, rows) {
+    // Set the variables for the CSS Grid
     document.documentElement.style.setProperty('--columns', columns);
     document.documentElement.style.setProperty('--rows', rows);
   }
@@ -32,8 +40,8 @@ export default class Board extends React.Component {
     for (let i = 1; i <= number; i=i+2) {
       const randomImgIndex = getNumber(0, images.length);
       const imgPath = `/${images[randomImgIndex]}`;
-      grid.push(<Card key={i} frontImg={imgPath} />);
-      grid.push(<Card key={i+1} frontImg={imgPath} />);
+      grid.push(<Card key={i} frontImg={imgPath} onCheck={this.onCheckPair}/>);
+      grid.push(<Card key={i+1} frontImg={imgPath} onCheck={this.onCheckPair}/>);
     }
     return shuffleArr(grid);
   }
@@ -74,17 +82,3 @@ export default class Board extends React.Component {
 
   }
 }
-
-// generateCards(number) {
-//   // Create an empty grid
-//   let grid = [];
-//   // Load the images into an array
-//   let images = loadImages();
-//   // Start looping to insert into the grid
-//   for (let i = 2; i <= number; i+2) {
-//     const randomImgIndex = getNumber(0, images.length);
-//     grid.push(<Card key={i - 1} alt={images[randomImgIndex]} />);
-//     grid.push(<Card key={i} alt={images[randomImgIndex]} />);
-//   }
-//   return grid;
-// }
